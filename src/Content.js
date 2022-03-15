@@ -7,6 +7,8 @@ import { useEffect, useState } from 'react'
 // 2. useEffect(callback, 1)
 // - Chỉ gọi callback 1 lần sau khi component mounted
 // 3. useEffect(callback, [deps])
+// Callback sẽ được gọi lại mỗi khi deps thay đổi
+
 
 // --------------
 // 1. Callback luôn được gọi sau khi component mounted
@@ -21,18 +23,22 @@ function Content () {
     const [type, setType] = useState('posts')
 
     useEffect ( () => {
-        fetch('https://jsonplaceholder.typicode.com/posts')
+        fetch('https://jsonplaceholder.typicode.com/${type}')
             .then (res => res.json())
             .then (posts => {
                  setPosts(posts);
             })
-    } )
+    } [type] )
 
     return (
         <div>
             {tabs.map(tab => (
                 <button 
                     key={tab}
+                    style={type === tab ? {
+                        color: '#fff',
+                        backgroundColor: '#333',
+                    }   : {}}
                     onClick={() => setType(tab)}
                 >
                     {tab}

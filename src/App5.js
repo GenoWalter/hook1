@@ -26,6 +26,13 @@ const addJob = payload => {
     }
 }
 
+const deleteJob = payload => {
+    return {
+        type: DELETE_JOB,
+        payload
+    }
+}
+
 // 3. Reducer
 const reducer = (state, action) => {
     console. log('Action: ', action)

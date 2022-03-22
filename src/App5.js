@@ -1,5 +1,4 @@
 import { useReducer, useRef } from 'react' 
-                                                                           ...
 // useReducer
 // 1. Init state
 const initState = {
